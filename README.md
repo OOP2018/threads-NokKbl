@@ -7,7 +7,7 @@ This lab illustrates the problem of synchronization when many threads are operat
 To the problems on the lab sheet and record your answers here.
 
 1. Record average run times.
-2. Write your explanation of the results.  Use good English and proper grammar.  Also use good Markdown formatting.
+2. Write your explanation of the results. Use good English and proper grammar. Also use good Markdown formatting.
 
 ## ThreadCount run times
 
@@ -63,7 +63,7 @@ How might this affect real applications?
 
 ## 6. Analysis of Results
 
-6.1) The **fastest** solution is using AtomicLong and the **slowest** solution is using ReentrantLock.
+6.1) From all thread safe solutions, the **fastest** solution is using AtomicLong and the **slowest** solution is using ReentrantLock.
 
 6.2) The ReentrantLock solution can be applied to the broadest range of problems because we can choose which part in the method that shouldn't let multiple threads do it at the same time and also doing the thread in queue to avoid some problems. For example, in bank application if we applied the ReentrantLock solution in the withdraw method, so, it can do only one thread at a time and the problem that can withdraw with the same account in different place at the same time won't happen. Moreover, the ReentrantLock is unstructured, so, it can even hold a lock across methods and it also performing much better under higher race condition.
 
@@ -76,4 +76,4 @@ How might this affect real applications?
 | Synchronized method     | 10,000,000         | 5.219846        |
 | AtomicLong for total    | 10,000,000         | 3.627217        |
 
-The **fastest** solution is using AtomicLong and the **slowest** solution is using Synchronized.
+- From all thread safe solutions, the **fastest** solution is using AtomicLong and the **slowest** solution is using Synchronized.
