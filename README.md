@@ -17,18 +17,16 @@ The threads use the counter to add and subtract values.
 
 | Counter class           | Limit              | Runtime (sec)   |
 |:------------------------|:-------------------|-----------------|
-| Unsynchronized counter  | 10000000           | 0.022713        |
-| Using ReentrantLock     | 10000000           | 2.744698        |
-| Synchronized method     | 10000000           | 1.127276        |
-| AtomicLong for total    | 10000000           | 0.468867        |
+| Unsynchronized counter  | 10,000,000         | 0.022713        |
+| Using ReentrantLock     | 10,000,000         | 2.744698        |
+| Synchronized method     | 10,000,000         | 1.127276        |
+| AtomicLong for total    | 10,000,000         | 0.468867        |
 
 ## 1. Using unsynchronized counter object
 
-answer the questions (1.1 - 1.3)
-
 1.1) Yes, the total should be zero. No, the total isn't always the same.
 
-1.2) The average run time is 0.022713.
+1.2) **The average run-times** is 0.022713.
 
 1.3) The counter total sometimes not zero because each thread is parallel working to each others, so, they may not start and finish at the same time.
 	 The total is not the same each time because each time we run the threads, it always count the total again.
@@ -41,9 +39,7 @@ How might this affect real applications?
 
 ## 3. Counter with ReentrantLock
 
-answer questions 3.1 - 3.4
-
-3.1) Yes, the total always zero. The average run time is 2.744698.
+3.1) Yes, the total always zero. **The average run-times** is 2.744698.
 
 3.2) Because we used ReentrantLock which is one solution of thread safe instead of unsynchronized counter.
 
@@ -53,9 +49,7 @@ answer questions 3.1 - 3.4
 
 ## 4. Counter with synchronized method
 
-answer question 4
-
-4.1) The total is zero. The average run time is 1.127276.
+4.1) The total is zero. **The average run-times** is 1.127276.
 
 4.2) Because we used "synchronized" which is one solution of thread safe instead of unsynchronized counter.
 
@@ -63,19 +57,23 @@ answer question 4
 
 ## 5. Counter with AtomicLong
 
-answer question 5
-
 5.1) Because we used AtomicCounter which is a thread safe instead of unsynchronized counter, so, it's already locking.
 
 5.2) We use AtomicLong when we want to use the same resource because it will updated the value automatically. The AtomicLong will gets and adds the given value to the current value. This solution better use with the data that isn't complex or less complex.
 
 ## 6. Analysis of Results
 
-answer question 6
+6.1) The **fastest** solution is using AtomicLong and the **slowest** solution is using ReentrantLock.
 
-6.1) Using AtomicLong for total is the fastest one and the Using ReentrantLock is the slowest one.
-
-6.2) Synchronized because it's faster than ReentrantLock and it's sure that the method will do only one thread at a time, for example, in bank application if we applied synchronized with the withdraw method, so, it will allow to do only one thread at a time and the problem that can withdraw with the same account in different place at the same time will be solve.
+6.2) The ReentrantLock solution can be applied to the broadest range of problems because we can choose which part in the method that shouldn't let multiple threads do it at the same time and also doing the thread in queue to avoid some problems. For example, in bank application if we applied the ReentrantLock solution in the withdraw method, so, it can do only one thread at a time and the problem that can withdraw with the same account in different place at the same time won't happen. Moreover, the ReentrantLock is unstructured, so, it can even hold a lock across methods and it also performing much better under higher race condition.
 
 ## 7. Using Many Threads (optional)
 
+| Counter class           | Limit              | Runtime (sec)   |
+|:------------------------|:-------------------|-----------------|
+| Unsynchronized counter  | 10,000,000         | 0.093212        |
+| Using ReentrantLock     | 10,000,000         | 4.337997        |
+| Synchronized method     | 10,000,000         | 5.219846        |
+| AtomicLong for total    | 10,000,000         | 3.627217        |
+
+The **fastest** solution is using AtomicLong and the **slowest** solution is using Synchronized.
